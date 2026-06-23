@@ -122,36 +122,70 @@ Manual validation steps for a future patch:
 
 ## 10. Human Review Decision
 
-The Codex analysis is acceptable.
+The Codex analysis and diff review are acceptable.
 
-This Issue is suitable for a documentation-only contribution, but it is more complex than Case 01.
+Case 02 is suitable for a documentation-only contribution, but it is more complex than Case 01 because it requires synthesizing multiple existing documentation files.
 
-The safest next step is not to generate a large documentation package.
+The generated patch is acceptable because:
 
-The safest next step is to generate one compact root-level `llms.txt` file that summarizes existing setup and initialization guidance for AI coding agents.
+1. It adds only one root-level `llms.txt` file.
+2. It does not modify source code.
+3. It does not modify `src/`.
+4. It does not modify package files.
+5. It does not modify tests.
+6. It does not modify existing documentation files.
+7. It preserves the repository's codebase-only contract.
+8. It keeps the confidence vocabulary exactly as: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
+9. It correctly says MCP clients should point to the built `dist/index.js`.
 
-No pull request should be created yet.
+The patch is acceptable for future pull request preparation.
+
+No pull request should be created until the case file, prompt log, result log, and patch file are all complete.
 
 ## 11. Final Outcome
 
 Issue understanding completed.
 
-Codex recommended a minimal documentation-only contribution.
+A documentation-only patch was generated and saved as:
 
-The proposed future patch target is:
+`patches/case_02.patch`
+
+The patch targets the root of the target repository and adds a new file:
 
 `llms.txt`
 
-No files were modified in this analysis step.
+The proposed `llms.txt` file gives compact AI-agent-readable setup instructions for Code Cartographer MCP.
 
-No patch was generated yet.
+It includes:
+
+1. Codebase-only contract.
+2. Preconditions.
+3. Install and build instructions.
+4. MCP client configuration.
+5. Target repository initialization.
+6. Init state verification.
+7. Output confidence vocabulary.
+8. References to existing documentation.
+
+The patch passed Codex diff review.
+
+No source code, package files, tests, or existing documentation files were modified.
 
 No pull request was created yet.
 
 ## 12. Failure or Learning Notes
 
-Case 02 is more complex than Case 01 because it requires synthesizing multiple existing documentation files.
+Case 02 shows that documentation-only issues can still have meaningful technical risk.
 
-The main learning is that AI coding agents can identify a reasonable documentation target, but human review is needed to control scope, avoid inaccurate setup instructions, and preserve repository-specific contracts.
+The main risks are not code bugs, but documentation accuracy, setup drift, and repository-specific contract violations.
 
-This case is useful for evaluating whether Codex can understand setup documentation, MCP client configuration, and repository-specific constraints before generating a patch.
+The most important learning from this case is that AI coding agents can generate useful setup documentation, but human review is needed to check:
+
+1. Whether the MCP client entrypoint is accurate.
+2. Whether commands match existing repository documentation.
+3. Whether the generated document preserves the codebase-only contract.
+4. Whether confidence vocabulary is copied exactly.
+5. Whether the patch stays small enough for a safe open-source contribution.
+
+This case is useful because it tests Codex on a real AI-agent-readable documentation task, not just a generic README edit.
+
