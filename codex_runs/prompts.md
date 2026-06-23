@@ -238,3 +238,85 @@ Use Codex to analyze whether Issue #70 is suitable for a documentation-only or c
 
 The goal is to understand the repository setup requirements, identify the safest target file, and avoid source code changes.
 
+## Prompt 05: Case 02 Diff Review
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/70
+
+### Patch File
+
+patches/case_02.patch
+
+### Prompt
+
+```text
+You are helping me review a generated documentation-only patch for a real open-source GitHub Issue.
+
+Target Issue:
+https://github.com/Muggler2k/code-cartographer-mcp/issues/70
+
+Target Repository:
+Muggler2k/code-cartographer-mcp
+
+Patch:
+The patch adds one new root-level file: `llms.txt`.
+
+Patch content summary:
+The new `llms.txt` contains compact agent setup instructions for Code Cartographer MCP. It includes:
+
+1. Codebase-only contract
+2. Preconditions
+3. Install and build instructions
+4. MCP client configuration
+5. Target repository initialization
+6. Init state verification
+7. Output confidence vocabulary
+8. References to existing docs
+
+Important patch details:
+1. It mentions `npm install`.
+2. It mentions `npm run build`.
+3. It says MCP clients should point to built `dist/index.js`.
+4. It mentions `preview_scope`.
+5. It mentions `init_codebase`.
+6. It mentions `check_init_state`.
+7. It preserves the codebase-only contract.
+8. It preserves the confidence vocabulary: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
+9. It avoids restating exact tool counts.
+10. It does not modify source code, package files, tests, or existing docs.
+
+Review goals:
+1. Check whether the patch matches Issue #70.
+2. Check whether adding root-level `llms.txt` is the smallest safe change.
+3. Check whether the patch changes only documentation.
+4. Check whether the patch preserves the codebase-only contract.
+5. Check whether the MCP client setup instruction is accurate.
+6. Check whether the confidence vocabulary is preserved exactly.
+7. Check whether the patch creates drift risk against existing docs.
+8. Decide whether this patch is acceptable for a future pull request.
+
+Output format:
+- Patch summary
+- Scope check
+- Accuracy check
+- Codebase-only contract check
+- Confidence vocabulary check
+- Drift risk check
+- Manual validation steps
+- Final review decision
+
+Do not apply changes.
+Do not create a pull request.
+```
+
+### Purpose
+
+Review the generated Case 02 documentation patch before any pull request is created.
+
+The goal is to confirm whether the `llms.txt` patch is safe, minimal, documentation-only, accurate, and aligned with Issue #70.
+
