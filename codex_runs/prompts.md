@@ -378,3 +378,213 @@ Use Codex to analyze whether Issue #71 is suitable for a documentation-only or e
 
 The goal is to understand the scope, risks, required documentation target, and validation steps for an agent-readable capabilities reference.
 
+## Prompt 07: Case 03 Patch Generation
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+### Prompt
+
+```text
+You are helping me generate a minimal documentation-only patch for a real open-source GitHub Issue.
+
+Target Issue:
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+Target Repository:
+Muggler2k/code-cartographer-mcp
+
+Known repository context:
+The repository already has:
+1. README.md
+2. docs/tools-reference.md
+3. docs/mcp-client-config.md
+4. docs/architecture.md
+
+Issue goal:
+Create an agent-readable capabilities reference that helps an LLM choose the right Code Cartographer MCP tool, pass correct arguments, prefer agent-friendly output modes, and chain tools correctly during a task.
+
+Important repository contract:
+The project is codebase-only.
+
+Outputs are static inferences from checked-in files, not runtime truth.
+
+Do not imply that the server runs the target app, executes tests, attaches a debugger, inspects telemetry, or proves production behavior.
+
+Confidence terms must stay exactly:
+
+`confirmed`, `likely`, `candidate`, `unclear`, `unresolved`
+
+Goal:
+Generate the smallest safe documentation-only patch.
+
+Important constraints:
+1. Do not modify source code.
+2. Do not modify `src/`.
+3. Do not modify package files.
+4. Do not modify tests.
+5. Do not modify existing docs unless absolutely necessary.
+6. Do not create a pull request.
+7. Do not apply changes automatically.
+8. Only output a unified diff patch.
+9. The patch should add one new documentation file: `docs/agent-capabilities.md`.
+10. Keep the new document compact and agent-readable.
+11. Ground the content in existing documentation.
+12. Do not invent unsupported capabilities.
+13. Avoid restating exact implementation details that could drift quickly.
+14. Do not mention exact tool counts except where necessary to satisfy the issue.
+
+The new `docs/agent-capabilities.md` should include:
+
+1. A title: `# Agent capabilities reference`
+2. A short codebase-only contract warning.
+3. A compact `goal -> tool` table.
+4. Coverage of all 20 tools.
+5. For each tool, include:
+   - purpose
+   - when to use it
+   - key required arguments
+   - recommended output mode when used by agents
+   - confidence or uncertainty note
+6. At least 3 chaining recipes.
+7. A note to prefer `llm_readable` or `dual` output for agent consumption.
+8. References to:
+   - `README.md`
+   - `docs/tools-reference.md`
+   - `docs/mcp-client-config.md`
+   - `docs/architecture.md`
+
+Suggested chaining recipes:
+1. `preview_scope -> init_codebase -> check_init_state -> get_context_summary`
+2. `get_context_summary -> find_callers -> find_path`
+3. `review_preflight -> analyze_change_impact -> review_change`
+
+Output format:
+1. Brief patch summary
+2. Unified diff patch only
+3. Manual validation steps
+4. Risk notes
+
+Do not create a PR.
+Do not apply changes.
+```
+
+### Purpose
+
+Generate a minimal documentation-only patch for Case 03.
+
+The goal is to add one agent-readable capabilities reference file without modifying source code, package files, tests, or existing documentation.
+
+## Prompt 08: Case 03 Diff Review
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+### Patch File
+
+patches/case_03.patch
+
+### Prompt
+
+```text
+You are helping me review a generated documentation-only patch for a real open-source GitHub Issue.
+
+Target Issue:
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+Target Repository:
+Muggler2k/code-cartographer-mcp
+
+Patch:
+The patch adds one new documentation file:
+
+`docs/agent-capabilities.md`
+
+Patch content summary:
+The new file is titled `Agent capabilities reference`.
+
+It includes:
+
+1. A codebase-only contract warning.
+2. A note recommending `outputMode: "llm_readable"` or `outputMode: "dual"` for agent consumption.
+3. The exact confidence vocabulary: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
+4. A `Goal -> tool` table.
+5. A tool reference table covering 20 tools.
+6. Chaining recipes.
+7. References to existing repository docs.
+
+Tools covered in the patch:
+
+1. `preview_scope`
+2. `init_codebase`
+3. `check_init_state`
+4. `get_context_summary`
+5. `analyze_reachability`
+6. `analyze_change_impact`
+7. `find_duplicate_behavior`
+8. `classify_legacy_paths`
+9. `get_ownership`
+10. `review_preflight`
+11. `review_change`
+12. `investigate_failure`
+13. `analyze_test_paths`
+14. `detect_architecture_drift`
+15. `find_callers`
+16. `find_path`
+17. `analyze_diff`
+18. `map_call_stack`
+19. `visualize_call_stack`
+20. `visualize_architecture`
+
+Chaining recipes included:
+
+1. `preview_scope -> init_codebase -> check_init_state -> get_context_summary`
+2. `get_context_summary -> find_callers -> find_path`
+3. `review_preflight -> analyze_change_impact -> review_change`
+4. `investigate_failure -> analyze_reachability -> analyze_test_paths`
+5. `map_call_stack -> visualize_call_stack`
+
+Review goals:
+1. Check whether the patch matches Issue #71.
+2. Check whether it covers all 20 tools.
+3. Check whether the tool names match the existing `docs/tools-reference.md`.
+4. Check whether the key required arguments are likely accurate.
+5. Check whether the patch changes only documentation.
+6. Check whether the patch preserves the codebase-only contract.
+7. Check whether the confidence vocabulary is preserved exactly.
+8. Check whether the chaining recipes are reasonable.
+9. Check whether the patch creates documentation drift risk.
+10. Decide whether this patch is acceptable for a future pull request.
+
+Output format:
+- Patch summary
+- Scope check
+- Tool coverage check
+- Accuracy check
+- Codebase-only contract check
+- Confidence vocabulary check
+- Chaining recipe check
+- Drift risk check
+- Manual validation steps
+- Final review decision
+
+Do not apply changes.
+Do not create a pull request.
+```
+
+### Purpose
+
+Review the generated Case 03 documentation patch before any pull request is created.
+
+The goal is to confirm whether the patch is documentation-only, accurate, complete, grounded in the existing tool reference, and acceptable for future PR preparation.
+

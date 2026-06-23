@@ -371,4 +371,136 @@ No patch was generated in this run.
 
 No pull request was created.
 
+## Run 07: Case 03 Patch Generation
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+### Patch File
+
+patches/case_03.patch
+
+### Codex Output Summary
+
+Codex generated a documentation-only patch for Case 03.
+
+The patch adds one new documentation file:
+
+`docs/agent-capabilities.md`
+
+The new file is titled:
+
+`Agent capabilities reference`
+
+The patch includes:
+
+1. A codebase-only contract warning.
+2. A recommendation to use `outputMode: "llm_readable"` or `outputMode: "dual"` for agent consumption.
+3. The exact confidence vocabulary: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
+4. A compact `goal -> tool` table.
+5. A tool reference table covering 20 tools.
+6. Chaining recipes.
+7. References to existing repository documentation.
+
+The patch does not modify source code, `src/`, package files, tests, or existing documentation.
+
+### Human Review
+
+The generated patch is acceptable for further review.
+
+It appears aligned with Issue #71 because the Issue asks for an agent-readable capabilities reference.
+
+The main risk is documentation accuracy because the file summarizes all 20 tools.
+
+Human review should verify tool names, required arguments, output modes, chaining recipes, and codebase-only wording.
+
+### Decision
+
+Accept Codex Run 07 as a valid patch generation result.
+
+The generated patch was saved as:
+
+`patches/case_03.patch`
+
+No pull request was created.
+
+No changes were applied to the target repository.
+
+## Run 08: Case 03 Diff Review
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+### Patch File
+
+patches/case_03.patch
+
+### Codex Output Summary
+
+Codex reviewed the generated documentation-only patch for Case 03.
+
+Codex found no blocking issues.
+
+The patch was judged acceptable because:
+
+1. It matches Issue #71's request for an agent-readable capabilities reference.
+2. It adds only one documentation file.
+3. It does not modify source code, `src/`, package files, tests, or existing docs.
+4. It covers all 20 tools listed in `docs/tools-reference.md`.
+5. The tool names match the existing documentation.
+6. The shared `repositoryRoot` and optional `outputMode` model matches the docs.
+7. Tool-specific required arguments are mostly accurate.
+8. It preserves the codebase-only contract.
+9. It preserves the confidence vocabulary exactly: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
+10. The chaining recipes are reasonable and grounded in the documented workflow.
+
+### Risk Notes
+
+Codex identified low to moderate drift risk.
+
+The new file duplicates compact tool summaries and arguments, so it may require updates when `docs/tools-reference.md` changes.
+
+This risk is acceptable because Issue #71 specifically requests an agent-readable capabilities reference.
+
+### Manual Validation Steps
+
+Future validation should confirm:
+
+1. Only `docs/agent-capabilities.md` changes.
+2. All 20 tool names match `docs/tools-reference.md`.
+3. Each tool row includes purpose, when-to-use guidance, key arguments, output mode, and uncertainty note.
+4. At least 3 chaining recipes exist.
+5. The codebase-only warning is present.
+6. The confidence vocabulary is exactly: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
+
+### Human Review
+
+The Codex review is acceptable.
+
+The patch is suitable for future pull request preparation.
+
+Compared with Case 01 and Case 02, this patch has higher documentation drift risk because it summarizes all tools.
+
+No pull request should be created until the case file, prompt log, result log, and patch file are complete.
+
+### Decision
+
+Accept Codex Run 08 as a valid diff review result for Case 03.
+
+The generated `docs/agent-capabilities.md` patch is acceptable for a future pull request.
+
+No pull request was created.
+
+No changes were applied to the target repository.
+
 
