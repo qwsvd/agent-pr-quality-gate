@@ -211,3 +211,39 @@ Planned improvements:
 ## Resume Summary
 
 Built an AI coding agent PR preflight review workflow based on real GitHub Issues. Used Codex to analyze Issues, generate patch drafts, review diffs, and record human quality gate decisions. Completed documented cases covering AI agent safety documentation, agent-readable setup docs, and agent-readable capabilities references. Produced patch files, prompt logs, result logs, failure analysis, and evaluation reports to assess scope control, documentation accuracy, repository contract preservation, and PR readiness.
+
+## Run the Dashboard Locally
+
+This project includes a Streamlit dashboard for viewing curated GitHub Issues, quality gate results, case studies, generated patch files, and project reports.
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the dashboard:
+
+```bash
+streamlit run app.py
+```
+
+If the command above does not work, use:
+
+```bash
+python -m streamlit run app.py
+```
+
+The dashboard will open locally at:
+
+```text
+http://localhost:8501
+```
+
+Current dashboard views include:
+
+1. Quality Gate Results
+2. Curated Issues
+3. Case Studies
+4. Patch Files
+5. Reports
