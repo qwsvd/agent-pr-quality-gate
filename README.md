@@ -208,6 +208,54 @@ Planned improvements:
 7. Expand the failure taxonomy.
 8. Add scoring fields to `quality_gate_results.csv`.
 
+## Evidence Index
+
+This repository is organized as an auditable project portfolio.
+
+Key evidence files:
+
+1. `data/curated_issues.csv`
+   Curated real GitHub Issues selected for AI coding agent contribution analysis.
+
+2. `data/quality_gate_results.csv`
+   Structured quality gate results for completed cases.
+
+3. `cases/case_01_doc_fix.md`
+   Case study for AI coding agent safety documentation.
+
+4. `cases/case_02_install_config.md`
+   Case study for agent-readable setup documentation.
+
+5. `cases/case_03_example_fix.md`
+   Case study for agent-readable capabilities documentation.
+
+6. `patches/case_01.patch`
+   Generated patch draft for Case 01.
+
+7. `patches/case_02.patch`
+   Generated patch draft for Case 02.
+
+8. `patches/case_03.patch`
+   Generated patch draft for Case 03.
+
+9. `codex_runs/prompts.md`
+   Prompt log showing how Codex was used for issue analysis, patch generation, and diff review.
+
+10. `codex_runs/results.md`
+    Codex output and human review records.
+
+11. `reports/failure_analysis.md`
+    Failure taxonomy for AI coding agent generated contributions.
+
+12. `reports/evaluation_report.md`
+    Evaluation report for the first project version.
+
+13. `reports/interview_summary.md`
+    Interview-oriented summary of the project.
+
+14. `screenshots/dashboard.png`
+    Local Streamlit dashboard preview.
+
 ## Resume Summary
 
 Built an AI coding agent PR preflight review workflow based on real GitHub Issues. Used Codex to analyze Issues, generate patch drafts, review diffs, and record human quality gate decisions. Completed documented cases covering AI agent safety documentation, agent-readable setup docs, and agent-readable capabilities references. Produced patch files, prompt logs, result logs, failure analysis, and evaluation reports to assess scope control, documentation accuracy, repository contract preservation, and PR readiness.
@@ -252,3 +300,4 @@ Current dashboard views include:
 3. Case Studies
 4. Patch Files
 5. Reports
+
