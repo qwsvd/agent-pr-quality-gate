@@ -52,19 +52,71 @@ The goal of this prompt is to decide whether Issue #6 is suitable for a beginner
 
 ### Target Repository
 
-TODO
+matilefaco/beauty-profile-ai-toolkit
 
 ### GitHub Issue
 
-TODO
+https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
 
 ### Prompt
 
-TODO
+```text
+You are helping me generate a minimal documentation patch for a real open-source GitHub Issue.
+
+Target Issue:
+https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
+
+Target Repository:
+matilefaco/beauty-profile-ai-toolkit
+
+Known repository inspection:
+The repository has a CONTRIBUTING.md file.
+CONTRIBUTING.md already contains:
+1. Safe contribution rules
+2. Good first contributions
+3. Prompt contribution guidelines
+4. Development setup
+5. Pull request checklist
+6. License of contributions
+
+Goal:
+Generate the smallest safe documentation patch only.
+
+Important constraints:
+1. Do not modify source code.
+2. Do not modify src/.
+3. Do not modify prompts/.
+4. Do not modify examples.
+5. Do not modify package files.
+6. Do not modify tests.
+7. Do not create a pull request.
+8. Do not apply changes automatically.
+9. Only output a unified diff patch.
+10. The patch should add a short subsection to CONTRIBUTING.md after the existing safe contribution rules and before Good first contributions.
+
+Requested section title:
+Using AI coding agents safely
+
+The new section should cover:
+1. Keep AI coding agents scoped to this public repository.
+2. Do not share private Nera SaaS code, private prompts, booking logic, payment logic, credentials, secrets, or real customer data.
+3. Review AI-generated changes before merging.
+4. Prefer using agents for documentation, examples, tests, and prompt evaluation.
+5. Keep examples fictional, minimal, and safe to publish.
+
+Output format:
+1. Brief patch summary
+2. Unified diff patch only
+3. Manual validation steps
+4. Risk notes
+
+Do not create a PR.
+Do not apply changes.
+```
 
 ### Purpose
 
-Generate the smallest safe patch without unrelated refactoring or unnecessary dependencies.
+Generate the smallest safe documentation patch for Issue #6 without applying changes, creating a pull request, or modifying code files.
 
 ## Prompt 03: Diff Review
 
