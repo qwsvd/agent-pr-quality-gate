@@ -10,7 +10,7 @@ diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
 +AI coding agents can be useful for this repository when they stay within the same safety boundaries as human contributors:
 +
 +- Keep agents scoped to this public repository.
-+- Do not share private Nera SaaS code, private prompts, booking logic, payment logic, credentials, secrets, or real customer data with agents.
++- Do not share private Nera SaaS code, private or production prompts, booking logic, payment logic, credentials, secrets, or real customer data with agents.
 +- Review AI-generated changes before merging them.
 +- Prefer using agents for documentation, examples, tests, and prompt evaluation.
 +- Keep agent-generated examples fictional, minimal, and safe to publish.
