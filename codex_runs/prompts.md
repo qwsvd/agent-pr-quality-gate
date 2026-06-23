@@ -320,3 +320,61 @@ Review the generated Case 02 documentation patch before any pull request is crea
 
 The goal is to confirm whether the `llms.txt` patch is safe, minimal, documentation-only, accurate, and aligned with Issue #70.
 
+## Prompt 06: Case 03 Issue Analysis
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+### Prompt
+
+```text
+You are helping me analyze a real GitHub Issue for an open-source contribution preflight review.
+
+Target Issue:
+https://github.com/Muggler2k/code-cartographer-mcp/issues/71
+
+Target Repository:
+Muggler2k/code-cartographer-mcp
+
+Goal:
+Do not make changes yet. First analyze whether this Issue is suitable for a beginner-friendly documentation or example contribution.
+
+Tasks:
+1. Explain the Issue in simple terms.
+2. Identify what kind of documentation, demo, example, or agent-readable file should be added or modified.
+3. Check whether this task requires source code changes.
+4. Identify possible risks.
+5. Propose the smallest safe documentation or example change.
+6. Give manual validation steps.
+7. Do not create a pull request yet.
+8. Do not apply changes yet.
+
+Important constraints:
+1. Do not modify source code.
+2. Do not modify package files.
+3. Do not modify tests.
+4. Do not invent unsupported capabilities.
+5. Ground the recommendation in existing repository docs.
+6. Preserve the repository's codebase-only contract if relevant.
+
+Output format:
+- Issue summary
+- Repository context
+- Suggested file to add or modify
+- Minimal change plan
+- Risk analysis
+- Validation steps
+- Recommendation
+```
+
+### Purpose
+
+Use Codex to analyze whether Issue #71 is suitable for a documentation-only or example-focused contribution before generating any patch.
+
+The goal is to understand the scope, risks, required documentation target, and validation steps for an agent-readable capabilities reference.
+
