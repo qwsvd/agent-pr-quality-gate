@@ -1,0 +1,87 @@
+diff --git a/llms.txt b/llms.txt
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/llms.txt
+@@ -0,0 +1,55 @@
++# Code Cartographer MCP agent setup
++
++This file is for LLM agents that need to install, build, configure, initialize, and verify Code Cartographer MCP with minimal prose.
++
++## Codebase-only contract
++
++Code Cartographer MCP is codebase-only.
++
++Outputs are static inferences from checked-in files. They are not runtime truth.
++
++Do not present static findings as runtime claims. The server does not run the target app, execute tests, attach a debugger, inspect telemetry, or prove production behavior.
++
++## Preconditions
++
++- Node.js and npm are available.
++- You have a local checkout of this repository.
++- You have a separate target repository to analyze.
++- Use absolute paths in MCP client configuration.
++
++## Install and build
++
++From the Code Cartographer MCP repository root:
++
++`sh
++npm install
++npm run build
++`
++
++MCP clients should point to the built server entry point:
++
++`text
++dist/index.js
++`
++
++Do not point MCP clients at unbuilt source files.
++
++## MCP client configuration
++
++Use this stdio shape, replacing the path with the absolute path to this repository's built `dist/index.js`:
++
++```json
++{
+
+* "mcpServers": {
+* "code-cartographer-mcp": {
+* ```
+   "command": "node",
+  ```
+* ```
+   "args": ["/absolute/path/to/code-cartographer-mcp/dist/index.js"]
+  ```
+* }
+* }
+  +}
+  +```
+*
+
++## Initialize a target repository
++
++Use `preview_scope` first to inspect which files would be included for the target repository.
++
++Use `init_codebase` after scope looks correct. This writes the target repository's `.code-cartographer-mcp/context-map.json`.
++
++## Verify init state
++
++Use `check_init_state` for the target repository before analysis. It reports whether the context map exists and whether it appears fresh.
++
++## Output confidence
++
++Use only this confidence vocabulary:
++
++`confirmed`, `likely`, `candidate`, `unclear`, `unresolved`
++
++Prefer `llm_readable` or `dual` output when another agent will consume results.
++
++## References
++
++- `README.md`
++- `docs/mcp-client-config.md`
++- `docs/tools-reference.md`
++- `docs/architecture.md`
