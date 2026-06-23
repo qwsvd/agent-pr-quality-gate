@@ -1,0 +1,1 @@
+case_id,repo,issue_url,patch_file,files_changed,lines_added,lines_deleted,core_logic_changed,dependency_changed,test_present,manual_validation_present,diff_risk_level,maintainer_context_checked,pr_submitted,pr_url,maintainer_response,final_outcome,human_acceptability,failure_reason
