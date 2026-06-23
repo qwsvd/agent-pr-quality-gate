@@ -191,3 +191,50 @@ Review the generated documentation diff before any pull request is created.
 
 The goal is to confirm whether the patch is safe, minimal, documentation-only, aligned with Issue #6, and acceptable for a future open-source contribution.
 
+## Prompt 04: Case 02 Issue Analysis
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/70
+
+### Prompt
+
+```text
+You are helping me analyze a real GitHub Issue for an open-source contribution preflight review.
+
+Target Issue:
+https://github.com/Muggler2k/code-cartographer-mcp/issues/70
+
+Goal:
+Do not make changes yet. First analyze whether this Issue is suitable for a beginner-friendly documentation or configuration contribution.
+
+Tasks:
+1. Explain the Issue in simple terms.
+2. Identify what kind of documentation or configuration file should be added or modified.
+3. Check whether this task requires source code changes.
+4. Identify possible risks.
+5. Propose the smallest safe documentation or configuration change.
+6. Give manual validation steps.
+7. Do not create a pull request yet.
+8. Do not apply changes yet.
+
+Output format:
+- Issue summary
+- Repository context
+- Suggested file to add or modify
+- Minimal change plan
+- Risk analysis
+- Validation steps
+- Recommendation
+```
+
+### Purpose
+
+Use Codex to analyze whether Issue #70 is suitable for a documentation-only or configuration-focused contribution before generating any patch.
+
+The goal is to understand the repository setup requirements, identify the safest target file, and avoid source code changes.
+

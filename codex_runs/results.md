@@ -148,4 +148,81 @@ The generated patch is acceptable for a future pull request after applying the s
 
 No pull request has been created yet.
 
+## Run 04: Case 02 Issue Analysis
+
+### Target Repository
+
+Muggler2k/code-cartographer-mcp
+
+### GitHub Issue
+
+https://github.com/Muggler2k/code-cartographer-mcp/issues/70
+
+### Codex Output Summary
+
+Codex analyzed Issue #70 as a documentation-focused task.
+
+The Issue asks for an AI or agent-readable setup document, likely a root-level `llms.txt`.
+
+In simple terms, the requested document should help an LLM agent understand how to install, build, configure, initialize, and verify the MCP server without reading long prose.
+
+Codex identified the existing repository documentation context:
+
+1. `README.md`
+2. `docs/mcp-client-config.md`
+3. `docs/tools-reference.md`
+4. `docs/architecture.md`
+
+Codex recommended the smallest safe change:
+
+1. Add a new root-level `llms.txt`.
+2. Keep it compact.
+3. Summarize existing setup guidance.
+4. Do not modify source code.
+5. Do not modify package files.
+6. Do not modify tests.
+7. Do not create `llms-full.txt` in the first attempt.
+
+### Suggested Future File
+
+`llms.txt`
+
+### Key Constraints Identified
+
+The future documentation must preserve the repository's codebase-only contract.
+
+It must not imply runtime truth.
+
+It must preserve the exact confidence vocabulary:
+
+`confirmed`, `likely`, `candidate`, `unclear`, `unresolved`
+
+It must also avoid inaccurate setup instructions, especially the MCP client entrypoint.
+
+MCP clients should point to the built `dist/index.js` after running `npm run build`.
+
+### Human Review
+
+The Codex analysis is acceptable.
+
+Case 02 is more complex than Case 01 because it requires synthesizing multiple existing documentation files.
+
+The task is still suitable as a documentation-only contribution if the future patch is kept narrow.
+
+The safest future patch should add only a compact root-level `llms.txt`.
+
+No source code should be modified.
+
+No pull request should be created yet.
+
+### Decision
+
+Accept Codex Run 04 as a valid issue-understanding result for Case 02.
+
+The next step is to generate a minimal `llms.txt` patch, but only after recording this prompt and result.
+
+No patch was generated in this run.
+
+No pull request was created.
+
 
