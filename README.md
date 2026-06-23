@@ -204,13 +204,18 @@ Planned improvements:
 3. Attempt at least one real Issue comment or pull request.
 4. Record maintainer feedback if available.
 5. Improve the quality gate checklist.
-6. Add a simple Streamlit dashboard.
+6. Improve the Streamlit dashboard.
 7. Expand the failure taxonomy.
 8. Add scoring fields to `quality_gate_results.csv`.
 
 ## Resume Summary
 
 Built an AI coding agent PR preflight review workflow based on real GitHub Issues. Used Codex to analyze Issues, generate patch drafts, review diffs, and record human quality gate decisions. Completed documented cases covering AI agent safety documentation, agent-readable setup docs, and agent-readable capabilities references. Produced patch files, prompt logs, result logs, failure analysis, and evaluation reports to assess scope control, documentation accuracy, repository contract preservation, and PR readiness.
+## Dashboard Preview
+
+![Agent PR Quality Gate Dashboard](screenshots/dashboard.png)
+
+The dashboard shows completed case studies, generated patch files, accepted future pull request candidates, and quality gate results.
 
 ## Run the Dashboard Locally
 
