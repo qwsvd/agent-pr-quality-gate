@@ -142,38 +142,74 @@ Manual validation steps for a future patch:
 
 ## 10. Human Review Decision
 
-The Codex analysis is acceptable.
+The Codex analysis, patch generation, and diff review are acceptable.
 
-This Issue is suitable for a documentation-only contribution, but it is only moderately beginner-friendly.
+Case 03 is suitable for a documentation-only contribution, but it is more complex than Case 01 and Case 02 because it requires summarizing all documented tools.
 
-Compared with Case 01 and Case 02, Case 03 has a larger scope because it requires covering all 20 tools and writing multiple tool-chaining examples.
+The generated patch is acceptable because:
 
-The safest next step is to generate a minimal `docs/agent-capabilities.md` patch only if the patch stays grounded in `docs/tools-reference.md`.
+1. It adds only one documentation file: `docs/agent-capabilities.md`.
+2. It does not modify source code.
+3. It does not modify `src/`.
+4. It does not modify package files.
+5. It does not modify tests.
+6. It does not modify existing documentation files.
+7. It includes a `goal -> tool` table.
+8. It covers all 20 tools.
+9. It includes multiple chaining recipes.
+10. It preserves the repository's codebase-only contract.
+11. It keeps the confidence vocabulary exactly as: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
 
-No pull request should be created yet.
+The patch is acceptable for future pull request preparation.
+
+No pull request should be created until the case file, prompt log, result log, and patch file are all complete.
 
 ## 11. Final Outcome
 
 Issue understanding completed.
 
-Codex recommended a documentation-only contribution.
+A documentation-only patch was generated and saved as:
 
-The proposed future patch target is:
+`patches/case_03.patch`
+
+The patch targets the documentation directory of the target repository and adds a new file:
 
 `docs/agent-capabilities.md`
 
-No files were modified in this analysis step.
+The proposed file gives an agent-readable capabilities reference for Code Cartographer MCP.
 
-No patch was generated yet.
+It includes:
+
+1. A codebase-only contract warning.
+2. Output mode guidance for AI agents.
+3. The exact confidence vocabulary.
+4. A `goal -> tool` table.
+5. A compact tool reference table covering 20 tools.
+6. Chaining recipes.
+7. References to existing documentation.
+
+The patch passed Codex diff review.
+
+No source code, package files, tests, or existing documentation files were modified.
 
 No pull request was created yet.
 
 ## 12. Failure or Learning Notes
 
-Case 03 is useful because it tests whether Codex can understand and summarize an entire tool system, not just a single setup instruction.
+Case 03 shows that a documentation-only Issue can still be complex.
 
-The main learning is that documentation-only issues can still be risky when they require full coverage of many tools.
+The main risk is not source code failure, but documentation drift and inaccurate tool summarization.
 
-This case should be treated carefully because a wrong capability summary could mislead future AI agents or human contributors.
+The most important learning from this case is that AI coding agents can generate useful agent-readable documentation, but human review is needed to check:
 
-Human review should focus on tool coverage, argument accuracy, output modes, chaining recipes, confidence vocabulary, and preservation of the codebase-only contract.
+1. Whether every tool is covered.
+2. Whether tool names match the official tool reference.
+3. Whether required arguments are accurate.
+4. Whether output modes are described correctly.
+5. Whether chaining recipes are reasonable.
+6. Whether the generated document preserves the codebase-only contract.
+7. Whether confidence vocabulary is copied exactly.
+8. Whether the patch stays compact enough for a safe open-source contribution.
+
+This case is useful because it tests Codex on a real agent-capability documentation task with higher scope and higher drift risk than a simple README edit.
+
