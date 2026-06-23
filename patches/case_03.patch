@@ -1,0 +1,78 @@
+diff --git a/docs/agent-capabilities.md b/docs/agent-capabilities.md
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/docs/agent-capabilities.md
+@@ -0,0 +1,78 @@
++# Agent capabilities reference
++
++Code Cartographer MCP is codebase-only. Outputs are static inferences from checked-in files, never runtime truth. Do not claim the server runs the target app, executes tests, attaches a debugger, inspects telemetry, or proves production behavior.
++
++For agent consumption, prefer `outputMode: "llm_readable"` or `outputMode: "dual"` unless a human-only answer is needed. Confidence terms are exactly: `confirmed`, `likely`, `candidate`, `unclear`, `unresolved`.
++
++## Goal -> tool
++
++| Goal | Tool |
++|---|---|
++| Preview files before initialization | `preview_scope` |
++| Build or refresh the persisted map | `init_codebase` |
++| Check whether initialization exists or is stale | `check_init_state` |
++| Get a compact map overview | `get_context_summary` |
++| Estimate static reachability | `analyze_reachability` |
++| Estimate blast radius for a target | `analyze_change_impact` |
++| Find possible duplicate behavior | `find_duplicate_behavior` |
++| Classify legacy path risk | `classify_legacy_paths` |
++| Find canonical owner or reuse path | `get_ownership` |
++| Prepare before editing | `review_preflight` |
++| Review a proposed or generated change | `review_change` |
++| Form static hypotheses around a failure | `investigate_failure` |
++| Find tests that statically reach a target | `analyze_test_paths` |
++| Detect architecture drift | `detect_architecture_drift` |
++| List direct static callers | `find_callers` |
++| Find a static path between symbols | `find_path` |
++| Compare baseline map to changed files | `analyze_diff` |
++| Map a rooted static call stack | `map_call_stack` |
++| Produce call stack diagram source | `visualize_call_stack` |
++| Produce architecture diagram source | `visualize_architecture` |
++
++## Tool reference
++
++All tools take `repositoryRoot` and optional `outputMode`. Most tools require an initialized map; `preview_scope`, `init_codebase`, and `check_init_state` do not.
++
++| Tool | Purpose | Use when | Key required args | Agent output | Confidence / uncertainty |
++|---|---|---|---|---|---|
++| `preview_scope` | Preview scoped files and exclusions. | Before writing a map. | `repositoryRoot`; optional `exclusionMode`, `languages`. | `llm_readable` | Static file-system plan only. |
++| `init_codebase` | Create `.code-cartographer-mcp/context-map.json`. | After scope looks correct or map is stale. | `repositoryRoot`; optional `exclusionMode`, `languages`. | `llm_readable` | Static map summary; no runtime execution. |
++| `check_init_state` | Report whether the saved map exists and appears fresh. | Before analysis or after changes. | `repositoryRoot`. | `llm_readable` | Freshness is derived from static fingerprints. |
++| `get_context_summary` | Return a compact repository map digest. | To orient an agent before analysis. | `repositoryRoot`. | `llm_readable` | Findings are confidence-graded and token-bounded. |
++| `analyze_reachability` | Estimate static reachability for a target. | To ask what may reach a symbol, file, or workflow. | `repositoryRoot`, `target`. | `llm_readable` | Paths are static hypotheses and never runtime proof. |
++| `analyze_change_impact` | Estimate blast radius for a target. | Before changing a symbol, file, or area. | `repositoryRoot`, `target`. | `llm_readable` | Impact is inferred from checked-in files only. |
++| `find_duplicate_behavior` | Find candidate duplicate behavior. | Before adding parallel workflows or implementations. | `repositoryRoot`, `subject`. | `llm_readable` | Duplicate findings are candidates with uncertainty. |
++| `classify_legacy_paths` | Classify legacy path reachability and risk. | Before removing or bypassing older paths. | `repositoryRoot`. | `llm_readable` | Never treats code as safely dead without human confirmation. |
++| `get_ownership` | Identify canonical owner or reuse path. | Before creating or bypassing an abstraction. | `repositoryRoot`, `symbol`. | `llm_readable` | Ownership is static and clamped by available evidence. |
++| `review_preflight` | Give pre-coding guidance for a requested change. | Before an agent edits. | `repositoryRoot`, `requestedChange`. | `llm_readable` or `dual` | Recommendations are static and should guide, not decide, implementation. |
++| `review_change` | Review a change for duplication, bypasses, legacy, and impact. | After drafting a diff or change description. | `repositoryRoot`, `changeDescription`. | `llm_readable` or `dual` | Findings are evidence-based and caveated. |
++| `investigate_failure` | Produce static hypotheses around a failure. | Given a stack trace, test name, method, or failure area. | `repositoryRoot`, `failureReference`. | `llm_readable` | Not a debugger; states runtime confirmation still needed. |
++| `analyze_test_paths` | Find tests that statically reach a target. | To choose likely relevant tests. | `repositoryRoot`, `target`. | `llm_readable` | Does not execute tests or prove coverage. |
++| `detect_architecture_drift` | Find drift such as scattered ownership or bypassed abstractions. | During architecture review. | `repositoryRoot`. | `llm_readable` | Drift findings are static and may be uncertain. |
++| `find_callers` | List direct static callers. | To inspect immediate inbound dependencies. | `repositoryRoot`, `symbol`. | `llm_readable` | Dynamic, DI, framework, and reflection paths may degrade confidence. |
++| `find_path` | Find static paths between two symbols. | To connect a source to a target. | `repositoryRoot`, `from`, `to`. | `llm_readable` | Static paths are not runtime traces. |
++| `analyze_diff` | Compare baseline map with changed files. | During PR or working-tree review. | `repositoryRoot`; optional `baselineMapPath`. | `llm_readable` or `dual` | Confidence regressions mean static evidence weakened. |
++| `map_call_stack` | Build a rooted static call graph. | To inspect paths under an entry point. | `repositoryRoot`, `entryPoint`; optional `maxDepth`. | `llm_readable` | Not a runtime call stack. |
++| `visualize_call_stack` | Return call stack diagram source. | To render a static call-stack diagram. | `repositoryRoot`, `entryPoint`; optional `format`, `maxDepth`. | `dual` | Client renders the diagram; server returns source text. |
++| `visualize_architecture` | Return architecture diagram source. | To render modules, ownership, and drift. | `repositoryRoot`; optional `format`. | `dual` | Diagram is static source, not live architecture telemetry. |
++
++## Chaining recipes
++
++1. Initialize and orient: `preview_scope -> init_codebase -> check_init_state -> get_context_summary`
++2. Trace a path: `get_context_summary -> find_callers -> find_path`
++3. Review agent work: `review_preflight -> analyze_change_impact -> review_change`
++4. Investigate safely: `investigate_failure -> analyze_reachability -> analyze_test_paths`
++5. Visualize after narrowing scope: `map_call_stack -> visualize_call_stack`
++
++## References
++
++- `README.md`
++- `docs/tools-reference.md`
++- `docs/mcp-client-config.md`
++- `docs/architecture.md`
