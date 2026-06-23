@@ -6,19 +6,47 @@ This file records the prompts used for Codex during open-source issue analysis a
 
 ### Target Repository
 
-TODO
+matilefaco/beauty-profile-ai-toolkit
 
 ### GitHub Issue
 
-TODO
+https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
 
 ### Prompt
 
-TODO
+```text
+You are helping me analyze a real GitHub Issue for an open-source contribution preflight review.
+
+Target Issue:
+https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
+
+Goal:
+Do not make changes yet. First analyze whether this Issue is suitable for a beginner-friendly documentation contribution.
+
+Tasks:
+1. Explain the Issue in simple terms.
+2. Identify what kind of documentation file should be added or modified.
+3. Check whether this task requires code changes.
+4. Identify possible risks.
+5. Propose the smallest safe documentation change.
+6. Give manual validation steps.
+7. Do not create a pull request yet.
+
+Output format:
+- Issue summary
+- Repository context
+- Suggested file to add or modify
+- Minimal change plan
+- Risk analysis
+- Validation steps
+- Recommendation
+```
 
 ### Purpose
 
-Understand the issue, identify related files, and decide whether the task is suitable for an AI coding agent.
+Use Codex only for issue understanding and preflight analysis.
+
+The goal of this prompt is to decide whether Issue #6 is suitable for a beginner-friendly documentation contribution before generating any patch or pull request.
 
 ## Prompt 02: Minimal Patch Generation
 
