@@ -1,94 +1,145 @@
 # Failure Analysis
 
-This report analyzes why AI coding agent generated outputs may fail in real open-source contribution workflows.
+This report summarizes observed and expected failure modes when using AI coding agents for real GitHub Issue preflight review and patch preparation.
 
-## 1. Purpose
+The current analysis is based on the first three documented cases in this project.
 
-The purpose of this report is to identify failure patterns before AI-generated patches are submitted to real open-source projects.
+## 1. Case Coverage
 
-## 2. Failure Taxonomy
+| Case    | Issue Type                            | Patch Generated | Risk Level   | Current Outcome          |
+| ------- | ------------------------------------- | --------------: | ------------ | ------------------------ |
+| Case 01 | Documentation safety guide            |             Yes | Low          | Acceptable for future PR |
+| Case 02 | Agent-readable setup documentation    |             Yes | Moderate-low | Acceptable for future PR |
+| Case 03 | Agent-readable capabilities reference |             Yes | Moderate     | Acceptable for future PR |
 
-### 2.1 Issue Misclassification
+## 2. Main Failure Modes
 
-TODO
+### 2.1 Scope Creep
 
-### 2.2 Wrong File Identification
+AI coding agents may expand a small documentation Issue into a larger change than needed.
 
-TODO
+Observed risk:
 
-### 2.3 Overly Broad Modification
+* Case 01 could have become a long AI policy document.
+* Case 02 could have generated both `llms.txt` and `llms-full.txt`.
+* Case 03 could have modified existing docs or added too much tool detail.
 
-TODO
+Control method:
 
-### 2.4 Missing Maintainer Context
+* Force the prompt to ask for the smallest safe change.
+* Explicitly forbid source code, package, test, and unrelated documentation changes.
+* Review the generated patch before any PR is created.
 
-TODO
+## 3. Documentation Accuracy Risk
 
-### 2.5 Ignored Version Information
+Documentation-only Issues can still be technically risky.
 
-TODO
+Observed risk:
 
-### 2.6 Missing Reproduction Steps
+* Case 02 required accurate MCP client setup instructions.
+* The MCP client entrypoint needed to point to the built `dist/index.js`.
+* Case 03 required accurate coverage of all 20 tools.
+* Tool names, arguments, output modes, and uncertainty notes could easily drift from the official tool reference.
 
-TODO
+Control method:
 
-### 2.7 Missing Validation Steps
+* Cross-check generated documentation against existing repository docs.
+* Avoid restating volatile implementation details unless necessary.
+* Reference authoritative existing docs such as README files, setup guides, and tool references.
 
-TODO
+## 4. Repository Contract Risk
 
-### 2.8 Test Failure
+AI coding agents may accidentally weaken repository-specific constraints.
 
-TODO
+Observed risk:
 
-### 2.9 Duplicate Solution
+* Case 02 and Case 03 both needed to preserve the codebase-only contract.
+* Generated wording could incorrectly imply runtime truth, test execution, telemetry inspection, debugger behavior, or production proof.
 
-TODO
+Control method:
 
-### 2.10 Unclear PR Description
+* Add explicit prompt constraints about repository contracts.
+* Use repeated diff review checks for forbidden implications.
+* Preserve exact vocabulary when the repository defines specific confidence terms.
 
-TODO
+## 5. Private Information and Safety Risk
 
-### 2.11 Code Style Mismatch
+AI-generated documentation may accidentally mention or imply private implementation details.
 
-TODO
+Observed risk:
 
-### 2.12 Seemingly Correct but Unacceptable Patch
+* Case 01 involved safe AI coding agent usage and private repository boundaries.
+* The generated patch needed to avoid private SaaS code, private or production prompts, booking logic, payment logic, credentials, secrets, and real customer data.
 
-TODO
+Control method:
 
-## 3. Case Mapping
+* Ask Codex to identify safety risks before patch generation.
+* Use human review to check whether public and generic wording is preserved.
+* Avoid adding examples that use real users, private systems, credentials, or business-sensitive logic.
 
-| Failure Type              | Related Case | Evidence | Human Review Decision |
-| ------------------------- | ------------ | -------- | --------------------- |
-| Issue misclassification   | TODO         | TODO     | TODO                  |
-| Wrong file identification | TODO         | TODO     | TODO                  |
-| Overly broad modification | TODO         | TODO     | TODO                  |
-| Missing validation        | TODO         | TODO     | TODO                  |
-| Maintainer context issue  | TODO         | TODO     | TODO                  |
+## 6. Drift Risk
 
-## 4. Most Common Failure Reasons
+AI-generated documentation may duplicate existing documentation and become outdated later.
 
-TODO
+Observed risk:
 
-## 5. Lessons for Human Review
+* Case 02 added a compact `llms.txt` that references existing setup docs.
+* Case 03 duplicated compact summaries for 20 tools, which may need updates when the official tool reference changes.
 
-TODO
+Control method:
 
-## 6. Preflight Checklist
+* Keep generated documentation compact.
+* Reference existing authoritative docs.
+* Avoid exact tool counts or volatile implementation details unless required by the Issue.
+* Record drift risk in the case notes and review reports.
 
-Before submitting an AI-generated patch, check:
+## 7. Beginner Suitability Risk
 
-1. Is the issue scope clear?
-2. Is the expected behavior clear?
-3. Are reproduction steps available?
-4. Are related files identified correctly?
-5. Is the patch minimal?
-6. Are unrelated refactors avoided?
-7. Are new dependencies avoided unless necessary?
-8. Are tests or manual validation steps included?
-9. Has maintainer context been checked?
-10. Is the PR description clear?
+Not all documentation Issues are equally beginner-friendly.
 
-## 7. Conclusion
+Observed pattern:
 
-TODO
+* Case 01 was beginner-friendly because it required a small safety subsection.
+* Case 02 was more complex because it required synthesizing setup instructions from multiple files.
+* Case 03 was significantly more complex because it required full tool coverage and chaining examples.
+
+Control method:
+
+* Classify Issues before generating patches.
+* Start with small documentation-only changes.
+* Avoid large capability references until the repository context is understood.
+* Treat “documentation-only” as lower risk, not zero risk.
+
+## 8. Current Lessons
+
+The first three cases show that AI coding agents can produce useful open-source contribution drafts, but they require structured human review.
+
+The most important quality gate checks are:
+
+1. Is the Issue scope clear?
+2. Is the patch the smallest safe change?
+3. Does the patch modify only expected files?
+4. Does it preserve repository-specific contracts?
+5. Does it avoid private information?
+6. Does it match existing documentation?
+7. Does it avoid unsupported claims?
+8. Does it include validation steps?
+9. Is it acceptable for a future PR?
+
+## 9. Current Conclusion
+
+The main failure risk is not that Codex cannot generate text.
+
+The main failure risk is that Codex may generate documentation that is too broad, slightly inaccurate, misaligned with repository constraints, or likely to drift from existing docs.
+
+A useful AI Coding Agent quality gate should therefore combine:
+
+1. Issue suitability analysis.
+2. Prompt logging.
+3. Patch generation.
+4. Diff review.
+5. Manual validation steps.
+6. Human decision records.
+7. Failure mode tracking.
+
+No pull request has been created yet.
