@@ -1,0 +1,20 @@
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -14,6 +14,17 @@ Please do **not** contribute:
+ 
+ All examples should be fictional, minimal, and safe to publish.
+ 
++## Using AI coding agents safely
++
++AI coding agents can be useful for this repository when they stay within the same safety boundaries as human contributors:
++
++- Keep agents scoped to this public repository.
++- Do not share private Nera SaaS code, private prompts, booking logic, payment logic, credentials, secrets, or real customer data with agents.
++- Review AI-generated changes before merging them.
++- Prefer using agents for documentation, examples, tests, and prompt evaluation.
++- Keep agent-generated examples fictional, minimal, and safe to publish.
++
+ ## Good first contributions
+ 
+ - Add fictional example profiles for additional beauty specialties.
