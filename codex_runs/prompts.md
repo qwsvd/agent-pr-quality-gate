@@ -122,16 +122,72 @@ Generate the smallest safe documentation patch for Issue #6 without applying cha
 
 ### Target Repository
 
-TODO
+matilefaco/beauty-profile-ai-toolkit
 
 ### Patch File
 
-TODO
+```diff
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -14,6 +14,17 @@ Please do **not** contribute:
+ 
+ All examples should be fictional, minimal, and safe to publish.
+ 
++## Using AI coding agents safely
++
++AI coding agents can be useful for this repository when they stay within the same safety boundaries as human contributors:
++
++- Keep agents scoped to this public repository.
++- Do not share private Nera SaaS code, private prompts, booking logic, payment logic, credentials, secrets, or real customer data with agents.
++- Review AI-generated changes before merging them.
++- Prefer using agents for documentation, examples, tests, and prompt evaluation.
++- Keep agent-generated examples fictional, minimal, and safe to publish.
++
+ ## Good first contributions
+ 
+ - Add fictional example profiles for additional beauty specialties.
+```
 
 ### Prompt
 
-TODO
+```text
+You are helping me review a generated documentation-only patch for a real open-source GitHub Issue.
+
+Target Issue:
+https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
+
+Target Repository:
+matilefaco/beauty-profile-ai-toolkit
+
+Patch:
+The patch adds a short section to CONTRIBUTING.md titled "Using AI coding agents safely".
+
+Review goals:
+1. Check whether the patch matches Issue #6.
+2. Check whether the patch changes only documentation.
+3. Check whether the patch introduces private implementation details.
+4. Check whether the patch duplicates existing CONTRIBUTING.md guidance too much.
+5. Check whether the patch is small enough for a beginner-friendly contribution.
+6. Check whether the wording is safe, public, and generic.
+7. Decide whether this patch is acceptable for a future pull request.
+
+Output format:
+- Patch summary
+- Scope check
+- Safety check
+- Duplication check
+- Risk analysis
+- Manual validation steps
+- Final review decision
+
+Do not apply changes.
+Do not create a pull request.
+```
 
 ### Purpose
 
-Review the generated diff, identify risks, and decide whether the patch is acceptable for PR submission.
+Review the generated documentation diff before any pull request is created.
+
+The goal is to confirm whether the patch is safe, minimal, documentation-only, aligned with Issue #6, and acceptable for a future open-source contribution.
+
