@@ -145,7 +145,17 @@ The next safe step is to generate a minimal documentation patch and review wheth
 
 Analysis completed.
 
-No patch was generated yet. No files were modified. No pull request was created.
+A documentation-only patch was generated and saved as:
+
+`patches/case_01.patch`
+
+The patch targets `CONTRIBUTING.md` in the target repository.
+
+The patch adds a short subsection titled `Using AI coding agents safely` after the existing safe contribution rules and before `Good first contributions`.
+
+No source code, prompt templates, examples, package files, or test files were modified.
+
+No pull request was created yet.
 
 ## 12. Failure or Learning Notes
 
