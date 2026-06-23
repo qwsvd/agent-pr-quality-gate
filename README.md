@@ -207,6 +207,25 @@ Planned improvements:
 6. Improve the Streamlit dashboard.
 7. Expand the failure taxonomy.
 8. Add scoring fields to `quality_gate_results.csv`.
+## Project Completion Checklist
+
+Current version status:
+
+* [x] Real GitHub Issues collected and curated
+* [x] Three completed documented case studies
+* [x] Three generated patch drafts
+* [x] Codex prompt logs recorded
+* [x] Codex output and human review logs recorded
+* [x] Quality gate result table created
+* [x] Failure analysis report completed
+* [x] Evaluation report completed
+* [x] Interview summary completed
+* [x] Local Streamlit dashboard implemented
+* [x] Dashboard screenshot added to README
+* [ ] Real pull request or Issue comment not created yet
+* [ ] Maintainer feedback not collected yet
+
+This repository should be evaluated as a preflight review and evidence-recording workflow, not as a submitted open-source PR record.
 
 ## Evidence Index
 
