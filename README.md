@@ -222,7 +222,7 @@ Current version status:
 * [x] Interview summary completed
 * [x] Local Streamlit dashboard implemented
 * [x] Dashboard screenshot added to README
-* [ ] Real pull request or Issue comment not created yet
+* [x] Real GitHub Issue comment created
 * [ ] Maintainer feedback not collected yet
 
 This repository should be evaluated as a preflight review and evidence-recording workflow, not as a submitted open-source PR record.
