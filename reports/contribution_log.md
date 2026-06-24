@@ -190,3 +190,13 @@ Planned next work:
 7. Expand failure taxonomy.
 8. Convert the project into a stronger portfolio and interview artifact.
 
+## Case 01 Issue Comment
+
+A real GitHub Issue comment was submitted for Case 01.
+
+Issue: https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
+
+The comment asked the maintainer whether a small documentation-only PR would be acceptable before preparing a pull request.
+
+Status: Waiting for maintainer response.
+
