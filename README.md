@@ -26,6 +26,8 @@ This project focuses on the preflight review process:
 
 ## Current Project Status
 
+The current version is a preflight review and evidence-recording workflow.
+
 The current version includes:
 
 1. Real GitHub Issue dataset.
@@ -39,6 +41,13 @@ The current version includes:
 9. Quality gate result table.
 
 No pull request has been created yet.
+
+## Verification
+
+```bash
+pip install -r requirements.txt
+python -m streamlit run app.py
+```
 
 ## Current Case Studies
 
@@ -201,12 +210,13 @@ Planned improvements:
 
 1. Add more curated GitHub Issues.
 2. Complete 5 deep case studies.
-3. Attempt at least one real Issue comment or pull request.
+3. Create at least one real Issue comment or pull request.
 4. Record maintainer feedback if available.
 5. Improve the quality gate checklist.
 6. Improve the Streamlit dashboard.
 7. Expand the failure taxonomy.
 8. Add scoring fields to `quality_gate_results.csv`.
+
 ## Project Completion Checklist
 
 Current version status:
@@ -222,7 +232,7 @@ Current version status:
 * [x] Interview summary completed
 * [x] Local Streamlit dashboard implemented
 * [x] Dashboard screenshot added to README
-* [x] Real GitHub Issue comment created
+* [ ] Real GitHub Issue comment or pull request created
 * [ ] Maintainer feedback not collected yet
 
 This repository should be evaluated as a preflight review and evidence-recording workflow, not as a submitted open-source PR record.
