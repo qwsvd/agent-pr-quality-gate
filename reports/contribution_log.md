@@ -56,9 +56,9 @@ Work completed:
 
 Current result:
 
-The generated patch is acceptable for future pull request preparation.
+The generated patch was used to prepare a real documentation-only pull request.
 
-No pull request has been created yet.
+Pull request status: open, pending maintainer review.
 
 ## 4. Case 02: Agent-Readable Setup Documentation
 
@@ -174,8 +174,9 @@ The project currently has:
 7. Interview summary.
 8. Quality gate result table.
 9. Improved README.
+10. One real open-source pull request opened and pending maintainer review.
 
-No pull request has been created yet.
+No pull request has been merged yet.
 
 ## 10. Next Work
 
@@ -199,4 +200,24 @@ Issue: https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6
 The comment asked the maintainer whether a small documentation-only PR would be acceptable before preparing a pull request.
 
 Status: Waiting for maintainer response.
+
+## Case 01 Pull Request
+
+Date: 2026-06-24
+
+Repo: `matilefaco/beauty-profile-ai-toolkit`
+
+Issue: #6
+
+PR: #9
+
+Status: open, pending maintainer review
+
+Scope: documentation-only
+
+Changed file: `CONTRIBUTING.md`
+
+Risk: low
+
+Notes: first real open-source PR created from the quality gate workflow.
 
