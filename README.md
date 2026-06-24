@@ -232,10 +232,11 @@ Current version status:
 * [x] Interview summary completed
 * [x] Local Streamlit dashboard implemented
 * [x] Dashboard screenshot added to README
-* [ ] Real GitHub Issue comment or pull request created
+* [x] Real GitHub Issue comment or pull request created
+* [x] Real pull requests created: 1
 * [ ] Maintainer feedback not collected yet
 
-This repository should be evaluated as a preflight review and evidence-recording workflow, not as a submitted open-source PR record.
+This repository should be evaluated as a preflight review and evidence-recording workflow with one real open-source PR currently pending maintainer review.
 
 ## Evidence Index
 

@@ -1,4 +1,4 @@
 case_id,repo,issue_url,patch_submitted,pr_url,maintainer_response,final_outcome,human_acceptability,failure_reason
-case_01,matilefaco/beauty-profile-ai-toolkit,https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6,no,,none,patch_generated_and_accepted_for_future_pr,acceptable,none_blocking
+case_01,matilefaco/beauty-profile-ai-toolkit,https://github.com/matilefaco/beauty-profile-ai-toolkit/issues/6,yes,https://github.com/matilefaco/beauty-profile-ai-toolkit/pull/9,pending,real_pr_opened_pending_review,acceptable,none_blocking
 case_02,Muggler2k/code-cartographer-mcp,https://github.com/Muggler2k/code-cartographer-mcp/issues/70,no,,none,patch_generated_and_accepted_for_future_pr,acceptable,none_blocking
 case_03,Muggler2k/code-cartographer-mcp,https://github.com/Muggler2k/code-cartographer-mcp/issues/71,no,,none,patch_generated_and_accepted_for_future_pr,acceptable,documentation_drift_risk
